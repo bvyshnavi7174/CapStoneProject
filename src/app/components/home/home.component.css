@@ -1,206 +1,184 @@
-/* General styles for all devices */
 .container {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    justify-content: space-between;
-  }
-  
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    background-color: #333;
-    color: white;
-    position: relative;
-  }
-  
-  .menu-icon {
-    font-size: 24px;
-    cursor: pointer;
-  }
-  
-  .logo {
-    text-align: center;
-  }
-  
-  .auth-links {
-    display: flex;
-  }
-  
-  .auth-links a {
-    margin-left: 15px;
-    color: white;
-    text-decoration: none;
-  }
-  
-  .auth-links a:hover {
-    text-decoration: underline;
-  }
-  
-  .side-menu {
-    position: fixed;
-    top: 0;
-    left: -250px;
-    width: 250px;
-    height: 100%;
-    background-color: #444;
-    color: white;
-    padding-top: 60px;
-    transition: left 0.3s ease;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
-    z-index: 1000;
-  }
-  
-  .menu-visible {
-    left: 0;
-  }
-  
-  .side-menu ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .side-menu ul li {
-    margin: 20px 0;
-    padding-left: 20px;
-  }
-  
-  .side-menu ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 18px;
-  }
-  
-  .side-menu ul li a:hover {
-    text-decoration: underline;
-  }
-  
-  footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 10px;
-  }
-  
-  /* Responsive styles for mobile devices */
-  @media (max-width: 768px) {
-    .header {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-  
-    .logo {
-      order: 1;
-      width: 100%;
-      text-align: center;
-      margin-bottom: 10px;
-    }
-  
-    .auth-links {
-      order: 2;
-      width: 100%;
-      justify-content: flex-end;
-    }
-  
-    .menu-icon {
-      order: 0;
-    }
-  }
-  
-  /* Adjustments for smaller screens like mobile */
-  @media (max-width: 576px) {
-    .side-menu ul li a {
-      font-size: 16px;
-    }
-  
-    .auth-links a {
-      margin-left: 10px;
-    }
-  }
-  
-  /* General styles for the modal */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  justify-content: space-between;
+  background-image: url('/assets/Library.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #333;
+  color: white;
+  position: relative;
+}
+
+.menu-icon {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.logo {
+  text-align: center;
+}
+
+.auth-links {
+  display: flex;
+}
+
+.auth-links a {
+  margin-left: 15px;
+  color: white;
+  text-decoration: none;
+}
+
+.auth-links a:hover {
+  text-decoration: underline;
+}
+
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: -300px;
+  width: 300px;
+  height: 100%;
+  background-color: #444;
+  color: white;
+  padding-top: 60px;
+  transition: left 0.3s ease;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-visible {
+  left: 0;
+}
+
+.back-arrow {
+  color: white;
+  font-size: 24px;
+  padding: 10px;
+  cursor: pointer;
+  text-align: left;
+  margin-left: 15px;
+}
+
+.side-menu ul {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.side-menu ul li {
+  margin: 20px 0;
+  padding-left: 20px;
+  font-size: 18px;
+}
+
+.side-menu ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 20px;
+  display: block;
+  padding: 10px 15px;
+  transition: background-color 0.3s ease, font-size 0.3s ease;
+}
+
+.side-menu ul li a:hover {
+  background-color: #555;
+  font-size: 22px;
+}
+
+footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 10px;
+}
+
 .modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.5);
-    transition: opacity 0.3s ease;
-  }
-  
-  /* Display modal */
-  .modal.show {
-    display: block;
-  }
-  
-  /* Modal content */
-  .modal-content {
-    background-color: #fff;
-    margin: 10% auto;
-    padding: 20px;
-    border-radius: 8px;
-    width: 90%;
-    max-width: 400px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
-    position: relative;
-  }
-  
-  /* Close button */
-  .close {
-    color: #aaa;
-    float: right;
-    font-size: 24px;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  
-  .close:hover,
-  .close:focus {
-    color: #000;
-    text-decoration: none;
-  }
-  
-  /* Form styling */
-  form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .form-group {
-    margin-bottom: 15px;
-  }
-  
-  .form-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-  }
-  
-  .form-group input {
-    width: 90%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-  }
-  
-  .btn {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .btn:hover {
-    background-color: #0056b3;
-  }
-  
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: opacity 0.3s ease;
+}
+
+.modal.show {
+  display: block;
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 10% auto;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-group input {
+  width: 90%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.btn {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}

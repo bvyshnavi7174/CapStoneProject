@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../auth.service';
-import { HttpClientModule } from '@angular/common/http';  // Import HttpClientModule if using HttpClient
+import { HttpClientModule } from '@angular/common/http';
+import { RouterLink, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, HttpClientModule],  // HttpClientModule can be included here
+  imports: [CommonModule, HttpClientModule, RouterLink, RouterModule],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
@@ -14,8 +15,11 @@ export class HomeComponent {
   menuVisible: boolean = false;
   showSignInModal: boolean = false;
   showSignUpModal: boolean = false;
+  isLoggedIn: boolean = false;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) {
+    this.checkLoginStatus();
+  }
 
   toggleMenu() {
     this.menuVisible = !this.menuVisible;
@@ -42,12 +46,14 @@ export class HomeComponent {
       .subscribe(
         response => {
           console.log('User signed up successfully:', response);
-          alert('User signed up successfully!'); // Show alert box
+          alert('User signed up successfully!');
+          localStorage.setItem('user', JSON.stringify({ username, email }));
+          this.isLoggedIn = true;
           this.closeSignUpModal();
         },
         error => {
           console.error('Error signing up:', error);
-          alert('Error signing up. Please try again.'); // Show alert box for error
+          alert('Error signing up. Please try again.');
         }
       );
   }
@@ -57,13 +63,30 @@ export class HomeComponent {
       .subscribe(
         response => {
           console.log('User signed in successfully:', response);
-          alert('User signed in successfully!'); // Show alert box
+          alert('User signed in successfully!');
+          localStorage.setItem('user', JSON.stringify({ username }));
+          this.isLoggedIn = true;
           this.closeSignInModal();
         },
         error => {
           console.error('Error signing in:', error);
-          alert('Error signing in. Please check your credentials and try again.'); // Show alert box for error
+          alert('Error signing in. Please check your credentials and try again.');
         }
       );
+  }
+
+  signOut() {
+    localStorage.removeItem('user');
+    this.isLoggedIn = false;
+    alert('You have been signed out.');
+  }
+
+  goToCheckout() {
+    alert('Going to checkout...');
+  }
+
+  checkLoginStatus() {
+    const user = localStorage.getItem('user');
+    this.isLoggedIn = !!user;
   }
 }
