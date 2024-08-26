@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../auth.service';
 import { HttpClientModule } from '@angular/common/http';
-import { RouterLink, RouterModule } from '@angular/router';
+import { RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, HttpClientModule, RouterLink, RouterModule],
+  imports: [CommonModule, HttpClientModule, RouterLink, RouterModule, RouterOutlet],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
@@ -89,4 +89,6 @@ export class HomeComponent {
     const user = localStorage.getItem('user');
     this.isLoggedIn = !!user;
   }
+
+  
 }
