@@ -32,7 +32,7 @@
   .about-inspiration h2,
   .about-team h2 {
     font-size: 2rem;
-    color: #382623; /* Lavender shade */
+    color: #382623; 
     margin-bottom: 10px;
   }
   
@@ -43,37 +43,64 @@
     color: #000000;
   }
   
-  /* Team Section Styling */
-  .about-team {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-  
-  .team-member {
-    background-color: #ffffff;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .team-member h3 {
-    font-size: 1.5rem;
-    color: #382623; /* Lavender shade */
-    margin-bottom: 10px;
-  }
-  
-  .team-member p {
-    font-size: 1rem;
-    color: #000000;
-    margin-bottom: 10px;
-  }
-  
-  .team-img {
-    width: 100%;
-    height: auto;
-    border-radius: 50%;
-  }
+/* General Container */
+.about-team {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #ffffff;
+  color: #000000;
+}
+
+/* Header Styling */
+.about-team h2 {
+  font-size: 2rem;
+  color: #382623; 
+  margin-bottom: 20px;
+}
+
+/* Container for Team Members */
+.team-members-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; 
+}
+
+/* Team Member Styling */
+.team-member {
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  background-color: #f5f5f5;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  flex: 1 1 calc(50% - 20px); 
+  max-width: calc(50% - 20px); 
+  box-sizing: border-box; 
+}
+
+.team-member h3 {
+  font-size: 1.5rem;
+  color: #382623; 
+  margin-bottom: 10px;
+}
+
+.team-member p {
+  font-size: 1rem;
+  color: #000000;
+  margin-bottom: 10px;
+}
+
+.team-img {
+  width: 80px; 
+  height: 80px; 
+  border-radius: 50%;
+  object-fit: cover; 
+  margin-top: 10px; 
+}
+
+
+
     
   /* Footer Styling */
   .about-footer {

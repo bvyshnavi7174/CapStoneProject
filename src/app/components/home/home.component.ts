@@ -81,6 +81,7 @@ export class HomeComponent {
     localStorage.removeItem('user');
     this.isLoggedIn = false;
     alert('You have been signed out.');
+    this.router.navigate(['/homecontent']);
   }
   
   goToCheckout() {
