@@ -64,6 +64,21 @@ header {
   background-color: #815959;
 }
 
+.auth-btnn {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #382623;
+  color: #382623; 
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.auth-btnn:hover {
+  background-color: #755a5a;
+}
+
 /* Side Menu */
 .side-menu {
   position: fixed;
@@ -126,13 +141,44 @@ header {
   font-size: 22px;
 }
 
-/* Footer */
 footer {
-  background-color: #382623; 
-  color: #ffffff;
+  background-color: #3e2723;
+  padding: 20px;
   text-align: center;
-  padding: 10px;
+  border-top: 1px solid #ffffff;
 }
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+}
+
+.footer-links li {
+  display: inline;
+  margin: 0 10px;
+}
+
+.footer-links a {
+  text-decoration: none;
+  color: #007bff;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+.footer-disclaimer {
+  font-size: 1em;
+  color: #ffffff;
+  margin-top: 10px;
+}
+
 
 /* Modal */
 .modal {

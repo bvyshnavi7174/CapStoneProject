@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../auth.service';
 import { HttpClientModule } from '@angular/common/http';
-import { RouterLink, RouterModule, RouterOutlet } from '@angular/router';
+import { RouterLink, RouterModule, RouterOutlet, Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -17,7 +17,7 @@ export class HomeComponent {
   showSignUpModal: boolean = false;
   isLoggedIn: boolean = false;
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private router: Router) {
     this.checkLoginStatus();
   }
 
@@ -82,13 +82,11 @@ export class HomeComponent {
   }
 
   goToCheckout() {
-    alert('Going to checkout...');
+    this.router.navigate(['/checkout']);
   }
 
   checkLoginStatus() {
     const user = localStorage.getItem('user');
     this.isLoggedIn = !!user;
   }
-
-  
 }

@@ -13,28 +13,43 @@
         &#8592;
       </div>
       <ul>
-        <li><a routerLink="/homecontent">Home</a></li>
-        <li><a routerLink="/sell">Sell</a></li>
-        <li><a routerLink="/buy">Buy</a></li>
-        <li><a routerLink="/aboutus">About Us</a></li>
-        <li><a routerLink="/contactus">Contact Us</a></li>
-        <li><a routerLink="/account">Accounts</a></li>
+        <li><a routerLink="/homecontent"><i class="fas fa-home"></i> Home</a></li>
+        <li><a routerLink="/aboutus"><i class="fas fa-info-circle"></i> About Us</a></li>
+        <li><a routerLink="/sell"><i class="fas fa-upload"></i> Sell Books</a></li>
+        <li><a routerLink="/buy"><i class="fas fa-download"></i> Buy Books</a></li>        
+        <li *ngIf="isLoggedIn"><a (click)="goToCheckout()" class="auth-btnn"><i class="fas fa-shopping-cart"></i> Checkout</a></li>
+        <li><a routerLink="/history"><i class="fas fa-history"></i> History</a></li>
+        <li><a routerLink="/account"><i class="fas fa-user"></i> Accounts</a></li>
+        <li *ngIf="isLoggedIn"><a (click)="signOut()" class="auth-btnn"><i class="fas fa-sign-out-alt"></i> Sign Out</a></li>
       </ul>
     </nav>
+    
 
     <div class="auth-links">
-      <button *ngIf="!isLoggedIn" (click)="openSignInModal()" class="auth-btn">Sign In</button>
-      <button *ngIf="!isLoggedIn" (click)="openSignUpModal()" class="auth-btn">Sign Up</button>
-      <button *ngIf="isLoggedIn" (click)="signOut()" class="auth-btn">Sign Out</button>
-      <button *ngIf="isLoggedIn" (click)="goToCheckout()" class="auth-btn">Checkout</button>
-    </div>
+      <button *ngIf="!isLoggedIn" (click)="openSignInModal()" class="auth-btn"><i class="fas fa-sign-in-alt"></i> Sign In</button>
+      <button *ngIf="!isLoggedIn" (click)="openSignUpModal()" class="auth-btn"><i class="fas fa-user-plus"></i> Sign Up</button>      
+      <button *ngIf="isLoggedIn" (click)="goToCheckout()" class="auth-btn"><i class="fas fa-shopping-cart"></i> Checkout</button>
+      <button *ngIf="isLoggedIn" (click)="signOut()" class="auth-btn"><i class="fas fa-sign-out-alt"></i> Sign Out</button>
+   </div>
   </header>
 
   <router-outlet></router-outlet>
 
   <footer>
-    <p>© 2024 Enchanted Pages. All rights reserved.</p>
+    <div class="footer-container">
+      <p >© 2024 Enchanted Pages. All rights reserved.</p>
+      <ul class="footer-links">
+        <li><a href="/privacy-policy">Privacy Policy</a></li>
+        <li><a href="/terms-of-service">Terms of Service</a></li>
+        <li><a href="/contact-us">Contact Us</a></li>
+      </ul>
+      <p class="footer-disclaimer">
+        All product names, logos, and brands are property of their respective owners. 
+        <br>Enchanted Pages is not responsible for any content or inaccuracies in the information provided.
+      </p>
+    </div>
   </footer>
+  
 
   <!-- Sign In Modal -->
   <div [ngClass]="{'modal': true, 'show': showSignInModal}" class="modal">

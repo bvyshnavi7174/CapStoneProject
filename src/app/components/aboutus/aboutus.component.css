@@ -1,0 +1,129 @@
+/* General Container */
+.about-container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    color: #000000;
+  }
+  
+  /* Header Styling */
+  .about-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .about-header h1 {
+    font-size: 2.5rem;
+    color: #382623; /* Lavender shade */
+  }
+  
+  /* Section Styling */
+  .about-purpose,
+  .about-inspiration,
+  .about-team {
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .about-purpose h2,
+  .about-inspiration h2,
+  .about-team h2 {
+    font-size: 2rem;
+    color: #382623; /* Lavender shade */
+    margin-bottom: 10px;
+  }
+  
+  .about-purpose p,
+  .about-inspiration p {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: #000000;
+  }
+  
+  /* Team Section Styling */
+  .about-team {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .team-member {
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .team-member h3 {
+    font-size: 1.5rem;
+    color: #382623; /* Lavender shade */
+    margin-bottom: 10px;
+  }
+  
+  .team-member p {
+    font-size: 1rem;
+    color: #000000;
+    margin-bottom: 10px;
+  }
+  
+  .team-img {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+  }
+    
+  /* Footer Styling */
+  .about-footer {
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px;
+    font-size: 0.875rem;
+    color: #000000;
+  }
+  
+  .team-img {
+    width: 80px; /* Decreased the size */
+    height: 80px; /* Maintain aspect ratio and circular shape */
+    border-radius: 50%;
+    object-fit: cover; /* Ensures the image covers the area while maintaining aspect ratio */
+}
+
+
+.about-contact {
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.about-contact h2 {
+  font-size: 2rem;
+  color: #382623; /* Lavender shade */
+  margin-bottom: 10px;
+}
+
+.about-contact p {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: #000000;
+  margin-bottom: 15px;
+}
+
+.about-contact ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.about-contact li {
+  font-size: 1rem;
+  color: #000000;
+  margin-bottom: 8px;
+}
+
+.about-contact li strong {
+  color: #382623; /* Lavender shade */
+}
