@@ -15,6 +15,9 @@ mongoose.connect(dbConfig.url, { useNewUrlParser: true, useUnifiedTopology: true
     .catch(err => console.log('Failed to connect to MongoDB:', err));
 
 // Routes
+// Add this line to your existing server.js
+app.use('/api/books', require('./routes/book.routes'));
+
 app.use('/api/users', require('./routes/user.routes'));
 
 app.listen(PORT, () => {

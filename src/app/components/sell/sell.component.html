@@ -1,2 +1,113 @@
-<div class="body"><h1>ijhurds</h1></div>
-<p>sell works!</p>
+<div class="container">
+  <button (click)="showForm = !showForm" class="toggle-btn">
+    {{ showForm ? 'Hide Form' : 'Show Form' }}
+  </button>
+
+  <div *ngIf="showForm" class="form-container">
+    <form (ngSubmit)="onSubmit()" #bookForm="ngForm" novalidate>
+      <div class="form-group">
+        <label for="name">Book Name:</label>
+        <input
+          id="name"
+          type="text"
+          [(ngModel)]="book.bookName"
+          name="name"
+          class="form-control"
+          required
+          #name="ngModel"
+        />
+        <div *ngIf="name.invalid && (name.dirty || name.touched)" class="error">
+          Book Name is required.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="image">Book Image URL:</label>
+        <input
+          id="image"
+          type="text"
+          [(ngModel)]="book.bookImage"
+          name="image"
+          class="form-control"
+          required
+          #image="ngModel"
+        />
+        <div *ngIf="image.invalid && (image.dirty || image.touched)" class="error">
+          Book Image URL is required.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="price">Price:</label>
+        <input
+          id="price"
+          type="number"
+          [(ngModel)]="book.price"
+          name="price"
+          class="form-control"
+          required
+          min="0"
+          #price="ngModel"
+        />
+        <div *ngIf="price.invalid && (price.dirty || price.touched)" class="error">
+          Price is required and must be a positive number.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="rating">Rating:</label>
+        <input
+          id="rating"
+          type="number"
+          [(ngModel)]="book.rating"
+          name="rating"
+          class="form-control"
+          required
+          min="0"
+          max="5"
+          #rating="ngModel"
+        />
+        <div *ngIf="rating.invalid && (rating.dirty || rating.touched)" class="error">
+          Rating is required and must be between 0 and 5.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="review">Review:</label>
+        <textarea
+          id="review"
+          [(ngModel)]="book.review"
+          name="review"
+          class="form-control"
+          required
+          #review="ngModel"
+        ></textarea>
+        <div *ngIf="review.invalid && (review.dirty || review.touched)" class="error">
+          Review is required.
+        </div>
+      </div>
+
+      <button type="submit" [disabled]="bookForm.invalid">
+        {{ editingIndex !== null ? 'Update' : 'Add' }} Book
+      </button>
+    </form>
+  </div>
+
+  <div class="card-container">
+    <div *ngFor="let book of books; let i = index" class="card">
+      <img
+        [src]="book.bookImage"
+        [alt]="book.bookName"
+        class="book-image"
+      />
+      <div class="book-details">
+        <h2>{{ book.bookName }}</h2>
+        <p>Price: ${{ book.price.toFixed(2) }}</p>
+        <p>Rating: {{ book.rating }}</p>
+        <p>Review: {{ book.review }}</p>
+        <button (click)="editBook(i)">Edit</button>
+        <button (click)="deleteBook(i)">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
