@@ -16,5 +16,9 @@ export class AuthService {
   signIn(username: string, password: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/signin`, { username, password });
   }
+  isLoggedIn(): boolean {
+    const user = localStorage.getItem('user');
+    return !!user;
+  }
 
 }
