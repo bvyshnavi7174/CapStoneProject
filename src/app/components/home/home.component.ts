@@ -67,7 +67,6 @@ export class HomeComponent {
           localStorage.setItem('user', JSON.stringify({ username }));
           this.isLoggedIn = true;
           this.closeSignInModal();
-          this.router.navigate(['/homecontent']);
         },
         error => {
           console.error('Error signing in:', error);
@@ -75,7 +74,6 @@ export class HomeComponent {
         }
       );
   }
-  
 
   signOut() {
     localStorage.removeItem('user');
@@ -83,14 +81,10 @@ export class HomeComponent {
     alert('You have been signed out.');
     this.router.navigate(['/homecontent']);
   }
-  
+
   goToCheckout() {
-    if (this.isLoggedIn) {
-      this.router.navigate(['/checkout']);
-    } else {
-      alert('Please sign in to proceed to checkout.');
-    }
-  }  
+    this.router.navigate(['/checkout']);
+  }
 
   checkLoginStatus() {
     const user = localStorage.getItem('user');
