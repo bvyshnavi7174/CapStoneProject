@@ -1,0 +1,13 @@
+.checkout-container {
+  padding: 20px;
+}
+
+.cart-item-card {
+  margin-bottom: 20px;
+}
+
+mat-card img {
+  height: 200px;
+  width: 100px;
+  object-fit: cover;
+}

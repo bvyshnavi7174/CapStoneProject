@@ -6,8 +6,8 @@ import { AboutusComponent } from './components/aboutus/aboutus.component';
 import { AccountComponent } from './components/account/account.component';
 import { HomecontentComponent } from './components/homecontent/homecontent.component';
 import { HistoryComponent } from './components/history/history.component';
-import { CheckoutComponent } from './components/checkout/checkout.component';
 import { AuthGuard } from './auth.guard';
+import { CheckoutComponent } from './components/checkout/checkout.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/homecontent', pathMatch: 'full' }, 

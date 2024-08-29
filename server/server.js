@@ -20,6 +20,10 @@ app.use('/api/books', require('./routes/book.routes'));
 
 app.use('/api/users', require('./routes/user.routes'));
 
+app.use('/api/cart', require('./routes/cart.routes'));
+
+
+
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });

@@ -57,4 +57,19 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
+// PUT /api/books/update-status - Update the status of multiple books
+router.put('/update-status', async (req, res) => {
+  try {
+    const books = req.body; // Array of books with new status
+    const updatePromises = books.map(book => 
+      Book.findByIdAndUpdate(book._id, { status: book.status }, { new: true })
+    );
+    const updatedBooks = await Promise.all(updatePromises);
+    res.json(updatedBooks);
+  } catch (err) {
+    console.error('Error updating book statuses:', err.message);
+    res.status(400).json({ message: err.message });
+  }
+});
+
 module.exports = router;

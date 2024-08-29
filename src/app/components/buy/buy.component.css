@@ -1,0 +1,77 @@
+/* Container for all the book cards */
+.buy-page-container {
+    display: flex;
+    flex-wrap: wrap; /* Allows wrapping to the next line if there are more cards than available space */
+    gap: 20px; /* Space between cards */
+    padding: 20px;
+  }
+  
+  /* Each book card */
+  .book-card {
+    width: calc(25% - 20px); /* 4 cards per row with space between */
+    box-sizing: border-box; /* Includes padding and border in width */
+  }
+  
+  /* Card styling */
+  mat-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Make sure the card takes full height available */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Image styling */
+  mat-card img {
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  /* Content area of the card */
+  mat-card-content {
+    flex: 1; /* Allows the content to take up remaining space */
+  }
+  
+  /* Actions section at the bottom of the card */
+  mat-card-actions {
+    display: flex;
+    justify-content: space-between; /* Distributes space between buttons */
+    padding: 8px; /* Padding to avoid buttons touching edges */
+  }
+  
+  /* Overlay background for the details box */
+  .details-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    z-index: 1000; /* Ensure it's on top of other content */
+  }
+  
+  /* Details box styling */
+  .details-box {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    max-width: 500px;
+    width: 100%;
+    text-align: left;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow for better visibility */
+    position: relative;
+    z-index: 1001; /* Ensure it is above the overlay */
+  }
+  
+  /* Header in the details box */
+  .details-box h1 {
+    margin-top: 0;
+  }
+  
+  /* Close button styling in the details box */
+  .details-box button {
+    margin-top: 20px; /* Add space above the button */
+  }
+  
