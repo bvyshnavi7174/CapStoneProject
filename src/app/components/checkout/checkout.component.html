@@ -16,6 +16,29 @@
 
   <div class="total-price">
     <h3>Total Price: {{ totalPrice | currency }}</h3>
-    <button mat-raised-button color="primary" (click)="pay()">Pay</button>
+    <button mat-raised-button color="primary" (click)="showPaymentForm = true">Proceed to Payment</button>
+  </div>
+
+  <!-- Payment Form -->
+  <div *ngIf="showPaymentForm" class="payment-form">
+    <form (ngSubmit)="onSubmitPayment()" #paymentForm="ngForm">
+      <mat-form-field>
+        <mat-label>Card Number</mat-label>
+        <input matInput type="text" name="cardNumber" [(ngModel)]="payment.cardNumber" required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Card Expiry</mat-label>
+        <input matInput type="text" name="expiryDate" [(ngModel)]="payment.expiryDate" required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>CVV</mat-label>
+        <input matInput type="text" name="cvv" [(ngModel)]="payment.cvv" required>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit">Pay</button>
+      <button mat-button (click)="showPaymentForm = false">Cancel</button>
+    </form>
   </div>
 </div>

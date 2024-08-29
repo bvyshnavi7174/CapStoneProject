@@ -8,49 +8,51 @@ import { Book } from './book.service'; // Adjust this import if necessary
   providedIn: 'root'
 })
 export class OrderService {
-  private apiUrl = 'http://localhost:5000/api/order'; // Correct API URL
+  private apiUrl = 'http://localhost:5000/api/order';
 
   constructor(private http: HttpClient) {}
 
-  // Example method to get user details (replace with actual implementation)
   private getUserDetails(): { username: string, useremail: string } {
-    // Replace this with actual logic to get the current user's details
-    return { username: 'actualUsername', useremail: 'actualUserEmail' };
+    const user = localStorage.getItem('user');
+    if (user) {
+      try {
+        const userData = JSON.parse(user);
+        return {
+          username: userData.username || '',
+          useremail: userData.email || 'default@example.com'
+        };
+      } catch (error) {
+        console.error('Failed to parse user data from local storage', error);
+        return { username: '', useremail: 'default@example.com' };
+      }
+    } else {
+      console.warn('No user data found in local storage');
+      return { username: '', useremail: 'default@example.com' };
+    }
   }
 
-  // Place an order
-  placeOrder(cartItems: { book: Book, quantity: number }[]): Observable<any> {
-    const { username, useremail } = this.getUserDetails(); // Retrieve actual user details
+  placeOrder(orderData: { items: { bookName: string; bookImage: string; price: number; quantity: number; }[], cardDetails: { cardNumber: string; expiryDate: string; cvv: string; } }): Observable<any> {
+    const { username, useremail } = this.getUserDetails();
 
-    const orderData = {
+    const fullOrderData = {
+      items: orderData.items,
+      cardDetails: orderData.cardDetails,
       username,
       useremail,
-      items: cartItems.map(item => ({
-        bookName: item.book.bookName,
-        bookImage: item.book.bookImage,
-        price: item.book.price,
-        quantity: item.quantity
-      })),
-      totalAmount: this.calculateTotalPrice(cartItems)
+      totalAmount: this.calculateTotalPrice(orderData.items),
+      status: 'buy',
+      orderDate: new Date().toISOString()  // Add the current date
     };
 
-    console.log('Sending order data:', orderData); // Log order data for debugging
+    console.log('Sending order data:', fullOrderData);
 
-    return this.http.post(`${this.apiUrl}/add`, orderData).pipe(
+    return this.http.post(`${this.apiUrl}/add`, fullOrderData).pipe(
       catchError(this.handleError('placeOrder'))
     );
   }
 
-  // Calculate total price for the order
-  private calculateTotalPrice(cartItems: { book: Book, quantity: number }[]): number {
-    return cartItems.reduce((total, item) => total + (item.book.price * item.quantity), 0);
-  }
-
-  // Retrieve orders for a user
-  getOrders(useremail: string): Observable<any> {
-    return this.http.get(`${this.apiUrl}/${useremail}`).pipe(
-      catchError(this.handleError('getOrders', []))
-    );
+  private calculateTotalPrice(cartItems: { bookName: string; bookImage: string; price: number; quantity: number; }[]): number {
+    return cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

@@ -21,7 +21,7 @@ app.use('/api/books', require('./routes/book.routes'));
 
 app.use('/api/users', require('./routes/user.routes'));
 
-app.use('/api/cart', require('./routes/cart.routes'));
+// app.use('/api/cart', require('./routes/cart.routes'));
 const orderRoutes = require('./routes/order.routes'); // Ensure this path is correct
 
 // Use order routes

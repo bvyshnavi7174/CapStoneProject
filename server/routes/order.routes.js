@@ -4,20 +4,61 @@ const Order = require('../models/order.model');
 
 // Add a new order
 router.post('/add', async (req, res) => {
-  try {
-    const { username, useremail, items, totalAmount } = req.body;
-    if (!username || !useremail || !items || !totalAmount) {
-      return res.status(400).json({ message: 'Missing required fields' });
+    try {
+      console.log('Received order data:', req.body); // Log the request body
+  
+      const { username, useremail, items, totalAmount, cardDetails } = req.body;
+  
+      if (!username || !useremail || !items || !totalAmount || !cardDetails) {
+        return res.status(400).json({ message: 'Missing required fields' });
+      }
+  
+      for (const item of items) {
+        if (!item.bookName || !item.bookImage || !item.quantity) {
+          return res.status(400).json({ message: 'Each item must include bookName, bookImage, and quantity' });
+        }
+      }
+      router.post('/add', async (req, res) => {
+        try {
+          const { username, useremail, items, totalAmount, cardDetails } = req.body;
+      
+          if (!username || !useremail || !items || !totalAmount || !cardDetails) {
+            return res.status(400).json({ message: 'Missing required fields' });
+          }
+      
+          for (const item of items) {
+            if (!item.bookName || !item.bookImage || !item.quantity) {
+              return res.status(400).json({ message: 'Each item must include bookName, bookImage, and quantity' });
+            }
+          }
+      
+          if (!cardDetails.cardNumber || !cardDetails.expiryDate || !cardDetails.cvv) {
+            return res.status(400).json({ message: 'Missing card details' });
+          }
+      
+          const order = new Order({ username, useremail, items, totalAmount, cardDetails });
+          const savedOrder = await order.save();
+          res.status(201).json(savedOrder);
+        } catch (error) {
+          console.error('Error saving order:', error);
+          res.status(400).json({ message: error.message });
+        }
+      });
+      
+      if (!cardDetails.cardNumber || !cardDetails.expiryDate || !cardDetails.cvv) {
+        return res.status(400).json({ message: 'Missing card details' });
+      }
+  
+      const order = new Order({ username, useremail, items, totalAmount, cardDetails });
+      const savedOrder = await order.save();
+      res.status(201).json(savedOrder);
+    } catch (error) {
+      console.error('Error saving order:', error);
+      res.status(400).json({ message: error.message });
     }
-
-    const order = new Order({ username, useremail, items, totalAmount });
-    const savedOrder = await order.save();
-    res.status(201).json(savedOrder);
-  } catch (error) {
-    console.error('Error saving order:', error);
-    res.status(400).json({ message: error.message });
-  }
-});
+  });
+  
+  
 
 // Get all orders for a user
 router.get('/:useremail', async (req, res) => {
