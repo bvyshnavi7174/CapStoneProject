@@ -1,19 +1,21 @@
 <div class="checkout-container">
-    <mat-card *ngFor="let item of cartItems">
-      <img mat-card-image [src]="item.book.bookImage" alt="{{ item.book.bookName }}">
-      <mat-card-content>
-        <h3>{{ item.book.bookName }}</h3>
-        <p>Price: {{ item.book.price | currency }}</p>
-        <p>Quantity: {{ item.quantity }}</p>
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-button color="primary" (click)="increaseQuantity(item.book)">+</button>
-        <button mat-button color="warn" (click)="decreaseQuantity(item.book)">-</button>
-      </mat-card-actions>
-    </mat-card>
-    <div class="total-price">
-      <h3>Total Price: {{ totalPrice | currency }}</h3>
-      <button mat-raised-button color="primary" (click)="pay()">Pay</button>
-    </div>
+  <mat-card *ngFor="let item of cartItems" class="cart-item-card">
+    <mat-card-header>
+      <mat-card-title>{{ item.book.bookName }}</mat-card-title>
+    </mat-card-header>
+    <img mat-card-image [src]="item.book.bookImage" alt="{{ item.book.bookName }}">
+    <mat-card-content>
+      <p>Price: {{ item.book.price | currency }}</p>
+      <p>Quantity: {{ item.quantity }}</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button color="primary" (click)="increaseQuantity(item.book)">+</button>
+      <button mat-button color="warn" (click)="decreaseQuantity(item.book)">-</button>
+    </mat-card-actions>
+  </mat-card>
+
+  <div class="total-price">
+    <h3>Total Price: {{ totalPrice | currency }}</h3>
+    <button mat-raised-button color="primary" (click)="pay()">Pay</button>
   </div>
-  
+</div>

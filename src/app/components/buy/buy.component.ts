@@ -43,7 +43,8 @@ export class BuyComponent implements OnInit {
   }
 
   addToCart(book: Book) {
-    this.checkoutService.addToCart(book); 
+    this.checkoutService.addToCart(book); // Add item to cart
+    
   }
 
   checkout() {

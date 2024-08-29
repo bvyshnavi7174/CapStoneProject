@@ -5,10 +5,16 @@ const Cart = require('../models/cart.model');
 // Add item to cart
 router.post('/add', async (req, res) => {
   try {
-    const cartItem = new Cart(req.body);
+    const { username, useremail, bookName, bookImage, price, rating, review } = req.body;
+    if (!username || !useremail || !bookName || !bookImage || !price) {
+      return res.status(400).json({ messge: 'Missing required fields' });
+    }
+
+    const cartItem = new Cart({ username, useremail, bookName, bookImage, price, rating, review });
     const savedItem = await cartItem.save();
     res.status(201).json(savedItem);
   } catch (error) {
+    console.error('Error saving cart item:', error); // Log the error
     res.status(400).json({ message: error.message });
   }
 });
@@ -26,10 +32,12 @@ router.get('/:useremail', async (req, res) => {
 // New route to store formatted cart data
 router.post('/store', async (req, res) => {
   try {
+    console.log('Received cart data:', req.body); // Log received data
     const cartData = req.body;
-    const savedItems = await Cart.insertMany(cartData); // Save multiple documents
+    const savedItems = await Cart.insertMany(cartData);
     res.status(201).json(savedItems);
   } catch (error) {
+    console.error('Error saving cart item:', error); // Log errors
     res.status(400).json({ message: error.message });
   }
 });

@@ -4,6 +4,7 @@ import { Book } from '../../book.service'; // Import the Book interface
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
+import { OrderService } from '../../order.service';
 
 @Component({
   selector: 'app-checkout',
@@ -16,7 +17,7 @@ export class CheckoutComponent implements OnInit {
   cartItems: { book: Book, quantity: number }[] = []; // Array to hold cart items
   totalPrice: number = 0;
 
-  constructor(private checkoutService: CheckoutService) {}
+  constructor(private checkoutService: CheckoutService, private orderService: OrderService) {}
 
   ngOnInit() {
     this.cartItems = this.checkoutService.getCartItems(); // Fetch cart items
@@ -38,11 +39,11 @@ export class CheckoutComponent implements OnInit {
     this.totalPrice = this.checkoutService.getTotalPrice();
   }
 
-
   pay() {
-    alert('Payment is successfully done');
-    // Optionally, you can clear the cart or redirect to another page here
-    this.checkoutService.clearCart(); // Assuming you have a method to clear the cart
-    this.updateCart(); // Update the cart display
-  }
-}
+    this.orderService.placeOrder(this.cartItems).subscribe(response => {
+      console.log('Order placed successfully:', response);
+      this.checkoutService.clearCart(); // Clear cart after successful order
+    }, error => {
+      console.error('Error placing order:', error);
+    });
+  }}

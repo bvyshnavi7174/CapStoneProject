@@ -8,6 +8,7 @@ const PORT = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(bodyParser.json());
+app.use(express.json());
 
 const dbConfig = require('./config/db.config');
 mongoose.connect(dbConfig.url, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -21,6 +22,10 @@ app.use('/api/books', require('./routes/book.routes'));
 app.use('/api/users', require('./routes/user.routes'));
 
 app.use('/api/cart', require('./routes/cart.routes'));
+const orderRoutes = require('./routes/order.routes'); // Ensure this path is correct
+
+// Use order routes
+app.use('/api/order', orderRoutes);
 
 
 

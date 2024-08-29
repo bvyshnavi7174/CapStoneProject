@@ -9,9 +9,15 @@ import { catchError } from 'rxjs/operators';
 })
 export class CheckoutService {
   private cart: { book: Book, quantity: number }[] = [];
-  private apiUrl = 'http://localhost:5000/api/books'; // Assuming the same API for updating book status
+  private apiUrl = 'http://localhost:5000/api/cart'; // Correct API URL
 
   constructor(private http: HttpClient) {}
+
+  // Example method to get user details (replace with actual implementation)
+  private getUserDetails(): { username: string, useremail: string } {
+    // Replace this with actual logic to get the current user's details
+    return { username: 'actualUsername', useremail: 'actualUserEmail' };
+  }
 
   addToCart(book: Book) {
     const existingItem = this.cart.find(item => item.book.bookName === book.bookName);
@@ -45,14 +51,23 @@ export class CheckoutService {
     this.cart = [];  // Clear the cart
   }
 
-  // New method to update book status
+  // Method to save cart data
   checkoutBooks(): Observable<any> {
-    const checkedOutBooks = this.cart.map(item => ({
-      ...item.book,
-      status: 'buy'
+    const { username, useremail } = this.getUserDetails(); // Retrieve actual user details
+
+    const cartData = this.cart.map(item => ({
+      username,
+      useremail,
+      bookName: item.book.bookName,
+      bookImage: item.book.bookImage,
+      price: item.book.price,
+      rating: item.book.rating,
+      review: item.book.review
     }));
 
-    return this.http.put(this.apiUrl + '/update-status', checkedOutBooks).pipe(
+    console.log('Sending cart data:', cartData); // Log cart data for debugging
+
+    return this.http.post(`${this.apiUrl}/store`, cartData).pipe(
       catchError(this.handleError('checkoutBooks'))
     );
   }
