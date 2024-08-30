@@ -1,66 +1,57 @@
-.account-container {
-    max-width: 800px;
-    margin: auto;
-  }
-  
-  .nav-tabs {
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 20px;
-  }
-  
-  .nav-tabs button {
-    padding: 10px 20px;
-    cursor: pointer;
-    background-color: #84c9d0;
-    border: none;
-    color: white;
-  }
-  
-  .nav-tabs button.active {
-    background-color: #66b2b8;
-  }
-  
-  form label {
-    display: block;
-    margin: 10px 0 5px;
-  }
-  
-  form input {
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
     width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
   }
   
-  form button {
-    padding: 10px 15px;
-    background-color: #84c9d0;
-    border: none;
-    color: white;
+  .modal.show {
+    display: block;
+  }
+  
+  .modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 500px;
+    position: relative;
+  }
+  
+  .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 24px;
     cursor: pointer;
   }
   
-  form button:hover {
-    background-color: #66b2b8;
-  }
-  
-  h4 {
+  .button-group {
+    display: flex;
+    justify-content: space-between;
     margin-top: 20px;
   }
   
-  ul {
-    list-style-type: none;
-    padding: 0;
+  button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
   }
   
-  ul li {
-    margin-bottom: 15px;
+  button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
   }
   
-  ul li img {
-    width: 100px;
-    height: auto;
-    margin-right: 15px;
+  button[type="button"] {
+    background-color: #f44336;
+    color: white;
   }
   

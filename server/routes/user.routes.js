@@ -10,6 +10,7 @@ router.post('/signup', async (req, res) => {
         await user.save();
         res.status(201).json({ message: 'User registered successfully' });
     } catch (err) {
+        console.error(err); // Log the error for debugging
         res.status(500).json({ error: 'Failed to register user' });
     }
 });
@@ -26,6 +27,56 @@ router.post('/signin', async (req, res) => {
         }
     } catch (err) {
         res.status(500).json({ error: 'Failed to sign in user' });
+    }
+});
+
+// Get User Details
+router.get('/username/:username', async (req, res) => {
+    try {
+        const { username } = req.params;
+        const user = await User.findOne({ username });
+        if (user) {
+            res.status(200).json(user);
+        } else {
+            res.status(404).json({ error: 'User not found' });
+        }
+    } catch (err) {
+        console.error(err); // Log the error for debugging
+        res.status(500).json({ error: 'Failed to fetch user details' });
+    }
+});
+
+// Update User Details
+router.put('/update/:username', async (req, res) => {
+    try {
+        const { username } = req.params;
+        const updates = req.body;
+        const user = await User.findOneAndUpdate({ username }, updates, { new: true });
+        if (user) {
+            res.status(200).json(user);
+        } else {
+            res.status(404).json({ error: 'User not found' });
+        }
+    } catch (err) {
+        console.error(err); // Log the error for debugging
+        res.status(500).json({ error: 'Failed to update user details' });
+    }
+});
+
+
+// Delete User
+router.delete('/delete/:username', async (req, res) => {
+    try {
+        const { username } = req.params;
+        const result = await User.deleteOne({ username });
+        if (result.deletedCount > 0) {
+            res.status(200).json({ message: 'User deleted successfully' });
+        } else {
+            res.status(404).json({ error: 'User not found' });
+        }
+    } catch (err) {
+        console.error(err); // Log the error for debugging
+        res.status(500).json({ error: 'Failed to delete user' });
     }
 });
 
