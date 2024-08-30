@@ -1,6 +1,6 @@
 <div class="container">
   <button (click)="showForm = !showForm" class="toggle-btn">
-    {{ showForm ? 'Hide Form' : 'Show Form' }}
+    {{ showForm ? 'Cancel' : 'Show Form' }}
   </button>
 
   <div *ngIf="showForm" class="form-container">
@@ -93,6 +93,13 @@
     </form>
   </div>
 
+  <!-- Confirmation Dialog -->
+  <div *ngIf="confirmDeleteIndex !== null" class="confirmation-dialog">
+    <p>Are you sure you want to delete this book?</p>
+    <button (click)="deleteBook()">Yes</button>
+    <button (click)="cancelDelete()">Cancel</button>
+  </div>
+
   <div class="card-container">
     <div *ngFor="let book of books; let i = index" class="card">
       <img
@@ -106,7 +113,7 @@
         <p>Rating: {{ book.rating }}</p>
         <p>Review: {{ book.review }}</p>
         <button (click)="editBook(i)">Edit</button>
-        <button (click)="deleteBook(i)">Delete</button>
+        <button (click)="confirmDeleteBook(i)">Delete</button>
       </div>
     </div>
   </div>

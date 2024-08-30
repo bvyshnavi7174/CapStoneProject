@@ -22,7 +22,7 @@ import { Book } from '../../book.service'; // Adjust if necessary
   styleUrls: ['./checkout.component.css']
 })
 export class CheckoutComponent implements OnInit {
-  cartItems: { book: Book; quantity: number; }[] = [];
+  cartItems: { book: Book; quantity: number; showDetails: boolean }[] = [];
   totalPrice: number = 0;
   showPaymentForm: boolean = false;
 
@@ -35,8 +35,7 @@ export class CheckoutComponent implements OnInit {
   constructor(private checkoutService: CheckoutService, private orderService: OrderService) {}
 
   ngOnInit() {
-    this.cartItems = this.checkoutService.getCartItems();
-    this.totalPrice = this.checkoutService.getTotalPrice();
+    this.updateCart(); // Initialize cart items and total price
   }
 
   increaseQuantity(book: Book) {
@@ -49,9 +48,13 @@ export class CheckoutComponent implements OnInit {
     this.updateCart();
   }
 
-  private updateCart() {
-    this.cartItems = this.checkoutService.getCartItems();
-    this.totalPrice = this.checkoutService.getTotalPrice();
+  removeItem(item: { book: Book; quantity: number }) {
+    this.checkoutService.removeFromCart(item.book);
+    this.updateCart();
+  }
+
+  toggleDetails(item: { book: Book; quantity: number; showDetails: boolean }) {
+    item.showDetails = !item.showDetails;
   }
 
   proceedToPayment() {
@@ -88,5 +91,13 @@ export class CheckoutComponent implements OnInit {
     }, error => {
       console.error('Error placing order:', error);
     });
+  }
+
+  private updateCart() {
+    this.cartItems = this.checkoutService.getCartItems().map(item => ({
+      ...item,
+      showDetails: false // Ensure details are hidden initially
+    }));
+    this.totalPrice = this.checkoutService.getTotalPrice();
   }
 }

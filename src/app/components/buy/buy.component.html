@@ -1,29 +1,29 @@
 <div class="buy-page-container">
-    <div *ngFor="let book of books" class="book-card">
-      <mat-card>
-        <img mat-card-image [src]="book.bookImage" alt="{{ book.bookName }}">
-        <mat-card-content>
-          <h6>{{ book.bookName }}</h6>
-          <p>Price: {{ book.price | currency }}</p>
-        </mat-card-content>
-        <mat-card-actions>
-          <button mat-button color="primary" (click)="showDetails(book)">Details</button>
-          <button mat-button color="accent" (click)="addToCart(book)">Add to Cart</button>
-        </mat-card-actions>
-      </mat-card>
-    </div>
+  <div *ngFor="let book of books" class="book-card">
+    <mat-card>
+      <img mat-card-image [src]="book.bookImage" alt="{{ book.bookName }}">
+      <mat-card-content>
+        <h6>{{ book.bookName }}</h6>
+        <p>Price: {{ book.price | currency }}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button class="add-to-cart-button" (click)="addToCart(book)">Add to Cart</button>
+      </mat-card-actions>
+      <!-- Details Box -->
+      <div class="details-box">
+        <h3>{{ book.bookName }}</h3>
+        <p><strong>Buyer's Name:</strong> {{ book.username }}</p>
+        <p><strong>Buyer's Email:</strong> {{ book.useremail }}</p>
+        <p><strong>Price:</strong> {{ book.price | currency }}</p>
+        <p><strong>Rating:</strong> {{ book.rating }}</p>
+        <p><strong>Review:</strong> {{ book.review }}</p>
+        <button class="add-to-cart-button" (click)="addToCart(book)">Add to Cart</button>
+      </div>
+    </mat-card>
   </div>
-  
-  <!-- Details Section -->
-  <div class="details-overlay" *ngIf="selectedBook">
-    <div class="details-box">
-      <h3>{{selectedBook.bookName}}</h3>
-      <p><strong>User Email:</strong> {{ selectedBook.useremail }}</p>
-      <p><strong>Username:</strong> {{ selectedBook.username }}</p>
-      <p><strong>Price:</strong> {{ selectedBook.price | currency }}</p>
-      <p><strong>Rating:</strong> {{ selectedBook.rating }}</p>
-      <p><strong>Review:</strong> {{ selectedBook.review }}</p>
-      <button mat-button color="primary" (click)="closeDetails()">Close</button>
-    </div>
-  </div>
-  
+</div>
+
+<!-- Alert Box -->
+<div class="alert-box" *ngIf="alertMessage">
+  <p>{{ alertMessage }}</p>
+</div>

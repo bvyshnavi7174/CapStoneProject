@@ -17,6 +17,7 @@ import { CheckoutService } from '../../checkout.service';
 export class BuyComponent implements OnInit {
   books: Book[] = [];  // Initialize an empty array for the books
   selectedBook: Book | null = null;  // Book details to show in the overlay
+  alertMessage: string | null = null;  // Alert message to display
 
   constructor(
     private bookService: BookService,
@@ -44,7 +45,8 @@ export class BuyComponent implements OnInit {
 
   addToCart(book: Book) {
     this.checkoutService.addToCart(book); // Add item to cart
-    
+    this.alertMessage = 'Book added to cart!'; // Set alert message
+    setTimeout(() => this.alertMessage = null, 3000); // Hide alert after 3 seconds
   }
 
   checkout() {

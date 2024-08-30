@@ -1,78 +1,146 @@
+/* General Container Styling */
 .container {
-    width: 80%;
-    margin: auto;
-    padding: 20px;
-    text-align: center;
-  }
-  
-  .toggle-btn {
-    margin-bottom: 20px;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-  }
-  
-  form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-  }
-  
-  label {
-    font-weight: bold;
-  }
-  
-  input, textarea {
-    width: 80%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  button {
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-  }
-  
-  .card-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-    margin-top: 20px;
-  }
-  
-  .card {
-    width: 200px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 10px;
-    text-align: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    background-color: #fff;
-  }
-  
-  .book-image {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 8px;
-    margin-bottom: 10px;
-  }
-  
-  .book-details {
-    text-align: center;
-  }
-  
-  .book-details h2 {
-    margin-bottom: 10px;
-    font-size: 18px;
-  }
-  
+  width: 80%;
+  margin: auto;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Toggle Button Styling */
+.toggle-btn {
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #4e342e; /* Theme color */
+  color: white;
+  border: none;
+  border-radius: 4px;
+}
+
+/* Form Container Styling */
+.form-container {
+  margin-bottom: 20px;
+  background-color: white; /* White background for the form */
+  border: 2px solid #4e342e; /* Theme color border */
+  border-radius: 8px; /* Rounded corners */
+  padding: 15px; /* Reduced padding */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  max-width: 600px; /* Limit the width of the form */
+  margin: 20px auto; /* Center the form and provide spacing */
+}
+
+/* Form Styling */
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch; /* Stretch inputs to match container width */
+  gap: 12px; /* Reduced gap for a more compact look */
+}
+
+/* Form Group Styling */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Align items to the left */
+  gap: 4px; /* Reduced gap between label and input */
+}
+
+/* Label Styling */
+label {
+  font-weight: bold;
+  color: #4e342e; /* Theme color */
+  margin-bottom: 4px; /* Reduced space between label and input */
+  text-align: left;
+}
+
+/* Input and Textarea Styling */
+input, textarea {
+  width: 100%; /* Make inputs and textarea full width */
+  padding: 8px; /* Reduced padding */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box; /* Ensure padding is included in width */
+}
+
+/* Button Styling */
+button {
+  padding: 8px 16px; /* Reduced padding */
+  font-size: 14px; /* Slightly smaller font size */
+  cursor: pointer;
+  background-color: #4e342e; /* Theme color */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Transition effects */
+}
+
+/* Button Hover Effect */
+button:hover {
+  background-color: #3e2723; /* Darker shade of theme color */
+  transform: scale(1.05); /* Slightly enlarge the button on hover */
+}
+
+/* Card Container Styling */
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* Card Styling */
+.card {
+  width: 200px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  background-color: #fff;
+}
+
+/* Book Image Styling */
+.book-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+/* Book Details Styling */
+.book-details {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.book-details h2 {
+  margin-bottom: 10px;
+  font-size: 16px; /* Reduced font size */
+  color: #4e342e; /* Theme color */
+}
+
+/* Error Message Styling */
+.error {
+  color: red;
+  font-size: 0.75em; /* Smaller font size */
+}
+
+.confirmation-dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background-color: white;
+  border: 2px solid #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.confirmation-dialog button {
+  margin: 0 5px;
+}
+

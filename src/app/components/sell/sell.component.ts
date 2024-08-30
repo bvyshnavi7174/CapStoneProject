@@ -37,9 +37,11 @@ export class SellComponent implements OnInit {
 
   books: Book[] = [];
   editingIndex: number | null = null;
+  confirmDeleteIndex: number | null = null; // Index of the book to be deleted
 
   currentUserEmail: string = ''; // Will be initialized from local storage
   currentUserName: string = '';  // Will be initialized from local storage
+  router: any;
 
   constructor(private bookService: BookService) { }
 
@@ -96,19 +98,32 @@ export class SellComponent implements OnInit {
     this.book = { ...this.books[index] };
     this.editingIndex = index;
     this.showForm = true;
+    // Navigate to the edit route, passing the book ID
+    this.router.navigate(['/edit', this.book._id]);
   }
 
-  deleteBook(index: number): void {
-    const bookId = this.books[index]._id;
-    if (bookId) {
-      this.bookService.deleteBook(bookId).pipe(
-        catchError(error => {
-          console.error('Error deleting book', error);
-          return of({}); // Return an empty object in case of error
-        })
-      ).subscribe(() => {
-        this.loadBooks();
-      });
+  confirmDeleteBook(index: number): void {
+    this.confirmDeleteIndex = index; // Set the index of the book to be deleted
+  }
+
+  cancelDelete(): void {
+    this.confirmDeleteIndex = null; // Reset confirmation index
+  }
+
+  deleteBook(): void {
+    if (this.confirmDeleteIndex !== null) {
+      const bookId = this.books[this.confirmDeleteIndex]._id;
+      if (bookId) {
+        this.bookService.deleteBook(bookId).pipe(
+          catchError(error => {
+            console.error('Error deleting book', error);
+            return of({}); // Return an empty object in case of error
+          })
+        ).subscribe(() => {
+          this.loadBooks();
+          this.confirmDeleteIndex = null; // Reset confirmation index after deletion
+        });
+      }
     }
   }
 

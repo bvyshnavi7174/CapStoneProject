@@ -1,22 +1,91 @@
+/* Checkout Container */
 .checkout-container {
   padding: 20px;
+  max-width: 1200px; /* Constrain container width for better readability */
+  margin: 0 auto; /* Center the container */
 }
 
+/* Cart Item Card Styling */
 .cart-item-card {
+  display: flex; /* Flexbox to align image and content side by side */
   margin-bottom: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #fff; /* White background for the card */
 }
 
+/* Image Styling */
 mat-card img {
-  height: 200px;
+  height: 100px;
   width: 100px;
   object-fit: cover;
+  border-radius: 4px; /* Rounded corners for the image */
+  margin: 10px; /* Space around the image */
 }
 
-.payment-form {
+/* Card Details Section */
+.card-details {
+  flex: 1;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Header Styling */
+mat-card-header {
+  margin-bottom: 10px;
+}
+
+/* Actions Section */
+.card-actions {
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.card-actions button {
+  margin: 0 5px;
+}
+
+/* Total Price Section */
+.total-price {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-top: 20px;
   padding: 20px;
   border: 1px solid #ddd;
   border-radius: 4px;
+  background-color: #f9f9f9;
+}
+
+.total-price h3 {
+  margin: 0;
+}
+
+.total-price button {
+  background-color: #3e2723; /* Dark color for contrast */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.total-price button:hover {
+  background-color: #5d4037; /* Lighter shade for hover */
+}
+
+/* Payment Form Styling */
+.payment-form {
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff; /* White background for the form */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .payment-form mat-form-field {
@@ -24,6 +93,46 @@ mat-card img {
   margin-bottom: 15px;
 }
 
+.payment-form mat-form-field mat-label {
+  color: #3e2723; /* Match label color with theme */
+}
+
+.payment-form input {
+  color: #3e2723; /* Text color matching the theme */
+}
+
 .payment-form button {
   margin-right: 10px;
+  background-color: #3e2723; /* Dark color for contrast */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.payment-form button:hover {
+  background-color: #5d4037; /* Lighter shade for hover */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .checkout-container {
+    padding: 10px;
+  }
+
+  .cart-item-card {
+    flex-direction: column; /* Stack image and content vertically */
+  }
+
+  .total-price {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .total-price button {
+    width: 100%;
+    margin-top: 10px;
+  }
 }
