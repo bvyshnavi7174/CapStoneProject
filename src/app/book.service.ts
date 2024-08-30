@@ -32,7 +32,9 @@ export class BookService {
     return this.http.get<Book[]>(this.apiUrl, { params });
   }
   
-  
+  getBooksByUsername(username: string): Observable<Book[]> {
+    return this.http.get<Book[]>(`${this.apiUrl}/user/${username}`);
+  }
 
   addBook(book: Book): Observable<Book> {
     return this.http.post<Book>(this.apiUrl, book).pipe(
@@ -62,5 +64,13 @@ export class BookService {
       console.error(`${operation} failed: ${error.message}`);
       return of(result as T);
     };
+  }
+
+
+  getBooksByStatusAndUsername(status: string, username: string): Observable<Book[]> {
+    const params = new HttpParams().set('status', status).set('username', username);
+    return this.http.get<Book[]>(this.apiUrl, { params }).pipe(
+      catchError(this.handleError<Book[]>('getBooksByStatusAndUsername', []))
+    );
   }
 }

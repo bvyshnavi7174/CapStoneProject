@@ -85,4 +85,15 @@ router.put('/update/:id', async (req, res) => {
   }
 });
 
+// Get all orders for a user by username
+router.get('/username/:username', async (req, res) => {
+  try {
+    const orders = await Order.find({ username: req.params.username });
+    res.json(orders);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+
 module.exports = router;

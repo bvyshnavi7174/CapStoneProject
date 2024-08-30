@@ -1,1 +1,62 @@
-<p>history works!</p>
+<div>
+  <h2>Order and Book History</h2>
+  
+  <button (click)="showOrders()" [class.active]="currentView === 'orders'">Show Orders</button>
+  <button (click)="showBooks()" [class.active]="currentView === 'books'">Show Books</button>
+  
+  <div *ngIf="currentView === 'orders'">
+    <h3>Order History</h3>
+    <div *ngIf="orders.length; else noOrders">
+      <div *ngFor="let order of orders">
+        <p>Order Date: {{ order.orderDate }}</p>
+        <p>Total Amount: {{ order.totalAmount }}</p>
+        <button (click)="showOrderDetails(order)">Details</button>
+      </div>
+    </div>
+    <ng-template #noOrders>
+      <p>No orders found.</p>
+    </ng-template>
+  </div>
+  
+  <div *ngIf="currentView === 'books'">
+    <h3>Book History</h3>
+    <div *ngIf="books.length; else noBooks">
+      <div *ngFor="let book of books">
+        <img [src]="book.bookImage" alt="{{ book.bookName }}" />
+        <p>Book Name: {{ book.bookName }}</p>
+        <p>Price: {{ book.price }}</p>
+      </div>
+    </div>
+    <ng-template #noBooks>
+      <p>No books found.</p>
+    </ng-template>
+  </div>
+
+  <!-- Expanded Order Details -->
+  <div *ngIf="selectedOrder">
+    <h3>Order Details</h3>
+    <p>Order ID: {{ selectedOrder._id }}</p>
+    <p>Username: {{ selectedOrder.username }}</p>
+    <p>User Email: {{ selectedOrder.useremail }}</p>
+    <p>Total Amount: {{ selectedOrder.totalAmount }}</p>
+    <p>Status: {{ selectedOrder.status }}</p>
+    <p>Order Date: {{ selectedOrder.orderDate }}</p>
+    
+    <h4>Items:</h4>
+    <ul>
+      <li *ngFor="let item of selectedOrder.items">
+        <img [src]="item.bookImage" alt="{{ item.bookName }}" />
+        <p>Book Name: {{ item.bookName }}</p>
+        <p>Quantity: {{ item.quantity }}</p>
+        <p>Price: {{ item.price }}</p>
+      </li>
+    </ul>
+
+    <h4>Card Details:</h4>
+    <p>Card Number: {{ selectedOrder.cardDetails.cardNumber }}</p>
+    <p>Expiry Date: {{ selectedOrder.cardDetails.expiryDate }}</p>
+    <p>CVV: {{ selectedOrder.cardDetails.cvv }}</p>
+
+    <button (click)="closeOrderDetails()">Close</button>
+  </div>
+</div>
