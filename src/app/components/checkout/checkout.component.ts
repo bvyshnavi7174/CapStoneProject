@@ -86,11 +86,22 @@ export class CheckoutComponent implements OnInit {
 
     this.orderService.placeOrder(orderDetails).subscribe(response => {
       console.log('Order placed successfully:', response);
-      this.checkoutService.clearCart();
+      this.clearCheckout();
       this.showPaymentForm = false;
     }, error => {
       console.error('Error placing order:', error);
     });
+  }
+
+  private clearCheckout() {
+    this.cartItems = [];
+    this.totalPrice = 0;
+    this.payment = {
+      cardNumber: '',
+      expiryDate: '',
+      cvv: ''
+    };
+    this.checkoutService.clearCart();
   }
 
   private updateCart() {

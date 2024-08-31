@@ -1,0 +1,59 @@
+/* Container for the book history */
+div {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 10px;
+}
+
+/* Header styling */
+h2 {
+  text-align: center;
+  color: #3e2723;
+  margin-bottom: 20px;
+  font-size: 1.8em;
+}
+
+/* Card container styling */
+div > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* Space between cards */
+  justify-content: space-between;
+}
+
+/* Card styling */
+div > div > div {
+  background-color: white;
+  color: #3e2723;
+  border: 2px solid #3e2723;
+  border-radius: 10px;
+  padding: 20px;
+  flex: 1 1 calc(33.333% - 20px); /* Flexible card size for 3 cards per row with gap */
+  box-sizing: border-box; /* Ensure padding and border do not affect the card width */
+  display: flex;
+  flex-direction: column;
+  text-align: left; /* Align text to the left */
+}
+
+/* Image styling */
+div > div > div img {
+  border-radius: 10px;
+  margin-bottom: 10px;
+  max-width: 100%;
+  height: auto;
+  object-fit: cover; /* Ensure the image covers the area without distortion */
+}
+
+/* Paragraph styling */
+div > div > div p {
+  margin: 0; /* Remove space between lines */
+  font-size: 1.1em;
+}
+
+/* No books message styling */
+p {
+  text-align: center;
+  color: #3e2723;
+  font-size: 1.2em;
+  text-align: left;
+}

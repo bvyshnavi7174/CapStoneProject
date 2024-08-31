@@ -8,6 +8,8 @@ import { HomecontentComponent } from './components/homecontent/homecontent.compo
 import { HistoryComponent } from './components/history/history.component';
 import { AuthGuard } from './auth.guard';
 import { CheckoutComponent } from './components/checkout/checkout.component';
+import { SelldetailsComponent } from './components/selldetails/selldetails.component';
+import { BuydetailsComponent } from './components/buydetails/buydetails.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/homecontent', pathMatch: 'full' }, 
@@ -16,6 +18,8 @@ export const routes: Routes = [
     { path: 'buy', component: BuyComponent ,canActivate: [AuthGuard]},              
     { path: 'aboutus', component: AboutusComponent },
     { path: 'history', component: HistoryComponent,canActivate: [AuthGuard] }, 
-    { path: 'checkout', component: CheckoutComponent ,canActivate: [AuthGuard]},   
-    { path: 'account', component: AccountComponent,canActivate: [AuthGuard] } 
+    { path: 'checkout', component: CheckoutComponent ,canActivate: [AuthGuard]},  
+    { path: 'selldetails', component: SelldetailsComponent ,canActivate: [AuthGuard]},  
+    { path: 'account', component: AccountComponent,canActivate: [AuthGuard] } ,
+    { path: 'buydetails', component: BuydetailsComponent,canActivate: [AuthGuard] } 
 ];

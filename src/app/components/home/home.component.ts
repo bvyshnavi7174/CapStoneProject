@@ -16,6 +16,7 @@ export class HomeComponent {
   showSignInModal: boolean = false;
   showSignUpModal: boolean = false;
   isLoggedIn: boolean = false;
+  isAdmin: boolean = false; 
 
   constructor(private authService: AuthService, private router: Router) {
     this.checkLoginStatus();
@@ -49,6 +50,7 @@ export class HomeComponent {
           alert('User signed up successfully!');
           localStorage.setItem('user', JSON.stringify({ username, email }));
           this.isLoggedIn = true;
+          this.checkUserRole();
           this.closeSignUpModal();
         },
         error => {
@@ -63,9 +65,17 @@ export class HomeComponent {
       .subscribe(
         response => {
           console.log('User signed in successfully:', response);
-          alert('User signed in successfully!');
-          localStorage.setItem('user', JSON.stringify({ username }));
+  
+          if (username === 'vyshnavi' && password === '1234') {
+            alert('Admin signed in successfully!');
+            localStorage.setItem('user', JSON.stringify({ username, role: 'admin' }));
+          } else {
+            alert('User signed in successfully!');
+            localStorage.setItem('user', JSON.stringify({ username, role: 'user' }));
+          }
+  
           this.isLoggedIn = true;
+          this.checkUserRole();
           this.closeSignInModal();
         },
         error => {
@@ -74,7 +84,12 @@ export class HomeComponent {
         }
       );
   }
-
+  
+  checkUserRole() {
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    this.isAdmin = user.role === 'admin';
+  }
+  
   signOut() {
     localStorage.removeItem('user');
     this.isLoggedIn = false;
@@ -87,7 +102,8 @@ export class HomeComponent {
   }
 
   checkLoginStatus() {
-    const user = localStorage.getItem('user');
-    this.isLoggedIn = !!user;
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    this.isLoggedIn = !!user.username;
+    this.checkUserRole();
   }
 }

@@ -56,7 +56,12 @@ export class OrderService {
     );
   }
   
-
+  getAllOrders(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/all`).pipe(
+      catchError(this.handleError<any[]>('getAllOrders', []))
+    );
+  }
+  
   private calculateTotalPrice(cartItems: { bookName: string; bookImage: string; price: number; quantity: number; }[]): number {
     return cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
   }

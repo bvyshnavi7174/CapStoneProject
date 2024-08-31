@@ -60,6 +60,22 @@ router.post('/add', async (req, res) => {
   
   
 
+
+  // Get all orders
+router.get('/all', async (req, res) => {
+  try {
+    const orders = await Order.find();
+    res.json(orders);
+  } catch (error) {
+    console.error('Error retrieving all orders:', error);
+    res.status(500).json({ message: error.message });
+  }
+});
+
+
+
+
+
 // Get all orders for a user
 router.get('/:useremail', async (req, res) => {
   try {

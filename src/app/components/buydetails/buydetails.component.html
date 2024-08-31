@@ -3,10 +3,10 @@
 
   <!-- Order History Section -->
   <div *ngIf="currentView === 'orders'">
+    
     <div *ngIf="orders.length; else noOrders" class="card-container">
       <div *ngFor="let order of orders" class="card">
-        <p>Order Id: {{ order._id }}</p>
-        <p>Book Name: {{ order.bookName }}</p>
+        <p>Order Date: {{ order.orderDate }}</p>
         <p>Total Amount: {{ order.totalAmount }}</p>
         <button (click)="showOrderDetails(order)" class="btn">Details</button>
       </div>
@@ -15,11 +15,9 @@
       <p>No orders found.</p>
     </ng-template>
   </div>
-</div>
 
-<!-- Popup Modal for Order Details -->
-<div *ngIf="selectedOrder" class="modal">
-  <div class="modal-content">
+  <!-- Expanded Order Details -->
+  <div *ngIf="selectedOrder" class="selected-order">
     <h3>Order Details</h3>
     <p>Order ID: {{ selectedOrder._id }}</p>
     <p>Username: {{ selectedOrder.username }}</p>

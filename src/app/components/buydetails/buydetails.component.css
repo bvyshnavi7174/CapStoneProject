@@ -1,0 +1,95 @@
+/* Centering the container in the middle of the page */
+.container {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh; /* Full viewport height */
+    
+}
+
+
+h2 {
+    text-align: center;
+    color: #3e2723;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+  }
+  
+/* Centering the order cards container */
+.orders-container {
+    margin-top: 150px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Space between cards */
+    justify-content: center; /* Centering cards horizontally */
+    margin: 0; /* Remove default margin */
+}
+
+/* Styling individual order cards */
+.order-card {
+    background-color: white; /* Card content background color */
+    color: #4e342e; /* Text color */
+    border: 2px solid #4e342e; /* Brown border color */
+    border-radius: 8px;
+    padding: 15px;
+    margin: 1px;
+    width: calc(25% - 20px); /* Adjust width for 4 cards in a row */
+    box-sizing: border-box; /* Ensure padding and border are included in the width */
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    align-items: center; /* Center content inside the card */
+}
+
+/* Modal overlay styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: flex;
+    align-items: center; /* Center modal vertically */
+    justify-content: center; /* Center modal horizontally */
+    margin: 0; /* Ensure no margin */
+    padding: 0; /* Ensure no padding */
+}
+
+/* Modal details styles */
+.order-details-modal {
+    background-color: white;
+    color: #4e342e;
+    border-radius: 8px;
+    padding: 20px;
+    width: 80%;
+    max-width: 600px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    align-items: center; /* Center content inside the modal */
+    box-sizing: border-box; /* Ensure padding and border are included in the width */
+}
+
+/* Button styles */
+button {
+    background-color: #4e342e;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+p{
+    text-align: left;
+}
+/* Button Hover Effect */
+button:hover {
+    background-color: #3e2723; /* Darker shade of theme color */
+    transform: scale(1.05); /* Slightly enlarge the button on hover */
+}

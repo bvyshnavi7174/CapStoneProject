@@ -1,22 +1,21 @@
 import { Component } from '@angular/core';
-import { Book, BookService } from '../../book.service';
 import { OrderService } from '../../order.service';
-import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { BookService } from '../../book.service';
 
 @Component({
-  selector: 'app-history',
+  selector: 'app-buydetails',
   standalone: true,
   imports: [FormsModule, CommonModule],
-  templateUrl: './history.component.html',
-  styleUrls: ['./history.component.css']
+  templateUrl: './buydetails.component.html',
+  styleUrls: ['./buydetails.component.css']
 })
-export class HistoryComponent {
+export class BuydetailsComponent {
   orders: any[] = [];
   books: any[] = [];
+  currentView: 'orders' | 'books' = 'orders';
   selectedOrder: any = null;
-  currentView: string = 'orders';
-
 
   constructor(private bookService: BookService, private orderService: OrderService) { }
 
@@ -28,7 +27,7 @@ export class HistoryComponent {
     const username = this.getUsername();
     
     if (this.currentView === 'orders') {
-      this.orderService.getOrdersByUsername(username).subscribe(
+      this.orderService.getAllOrders().subscribe(
         data => {
           this.orders = data.sort((a, b) => new Date(b.orderDate).getTime() - new Date(a.orderDate).getTime());
         },
@@ -49,15 +48,28 @@ export class HistoryComponent {
   }
 
 
+  
 
-  showOrderDetails(order: any): void {
+openOrderDetails(order: any): void {
+  this.selectedOrder = order;
+}
+
+
+
+
+
+toggleOrderDetails(order: any, event: MouseEvent): void {
+  // Close the currently open order details if any
+  if (this.selectedOrder && this.selectedOrder._id === order._id) {
+    this.selectedOrder = null;
+  } else {
     this.selectedOrder = order;
   }
-  
-  closeOrderDetails(): void {
-    this.selectedOrder = null;
-  }
-  
+}
+
+isSelectedOrder(order: any): boolean {
+  return this.selectedOrder && this.selectedOrder._id === order._id;
+}
 
 
 
@@ -71,7 +83,13 @@ export class HistoryComponent {
     this.loadData();
   }
 
-  
+  showOrderDetails(order: any): void {
+    this.selectedOrder = order;
+  }
+
+  closeOrderDetails(): void {
+    this.selectedOrder = null;
+  }
 
   private getUsername(): string {
     const user = localStorage.getItem('user');

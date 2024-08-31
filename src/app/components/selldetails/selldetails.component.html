@@ -1,0 +1,19 @@
+<div>
+  <h2>Sell Details</h2>
+
+  <div *ngIf="books.length; else noBooks">
+    <div *ngFor="let book of books">
+      <img [src]="book.bookImage" alt="{{ book.bookName }}" />
+      <p>Book Name: {{ book.bookName }}</p>
+      <p>Price: {{ book.price }}</p>
+      <p>Rating: {{ book.rating }}</p>
+      <p>Review: {{ book.review }}</p>
+      <p>Status: {{ book.status }}</p>
+      <p>Date: {{ book.date | date:'medium' }}</p>
+    </div>
+  </div>
+
+  <ng-template #noBooks>
+    <p>No books found.</p>
+  </ng-template>
+</div>
