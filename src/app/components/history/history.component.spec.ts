@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientModule } from '@angular/common/http';  // Import HttpClientModule
 import { HistoryComponent } from './history.component';
+import { BookService } from '../../book.service';
 
 describe('HistoryComponent', () => {
   let component: HistoryComponent;
@@ -8,7 +9,11 @@ describe('HistoryComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HistoryComponent]
+      imports: [
+        HttpClientModule, // Add HttpClientModule to the imports array
+        HistoryComponent
+      ],
+      providers: [BookService] // Ensure your service is provided
     })
     .compileComponents();
 

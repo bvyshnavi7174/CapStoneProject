@@ -15,16 +15,12 @@ mongoose.connect(dbConfig.url, { useNewUrlParser: true, useUnifiedTopology: true
     .then(() => console.log('Connected to MongoDB'))
     .catch(err => console.log('Failed to connect to MongoDB:', err));
 
-// Routes
-// Add this line to your existing server.js
+
 app.use('/api/books', require('./routes/book.routes'));
-
 app.use('/api/users', require('./routes/user.routes'));
+const orderRoutes = require('./routes/order.routes'); 
 
-// app.use('/api/cart', require('./routes/cart.routes'));
-const orderRoutes = require('./routes/order.routes'); // Ensure this path is correct
 
-// Use order routes
 app.use('/api/order', orderRoutes);
 
 

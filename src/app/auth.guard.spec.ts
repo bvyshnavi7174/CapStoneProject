@@ -1,18 +1,26 @@
 import { TestBed } from '@angular/core/testing';
-import { CanActivateFn } from '@angular/router';
-import { AuthGuard } from './auth.guard'; // Import the correct class
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { Router } from '@angular/router';
+import { AuthGuard } from './auth.guard';
+import { AuthService } from './auth.service';
 
 describe('AuthGuard', () => {
   let authGuard: AuthGuard;
+  let authService: AuthService;
+  let router: Router;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
       providers: [
         AuthGuard,
-        // Mock AuthService and Router if needed
+        AuthService,
+        { provide: Router, useValue: { navigate: jasmine.createSpy('navigate') } } // Spy setup
       ]
     });
     authGuard = TestBed.inject(AuthGuard);
+    authService = TestBed.inject(AuthService);
+    router = TestBed.inject(Router);
   });
 
   it('should be created', () => {
@@ -20,17 +28,15 @@ describe('AuthGuard', () => {
   });
 
   it('should allow access if user is logged in', () => {
-    // Mock the AuthService to return true for isLoggedIn
-    spyOn(authGuard['authService'], 'isLoggedIn').and.returnValue(true);
+    spyOn(authService, 'isLoggedIn').and.returnValue(true);
     const result = authGuard.canActivate();
     expect(result).toBeTrue();
   });
 
   it('should deny access and redirect if user is not logged in', () => {
-    // Mock the AuthService to return false for isLoggedIn
-    spyOn(authGuard['authService'], 'isLoggedIn').and.returnValue(false);
-    const navigateSpy = spyOn(authGuard['router'], 'navigate');
-    
+    spyOn(authService, 'isLoggedIn').and.returnValue(false);
+    const navigateSpy = router.navigate as jasmine.Spy; // Get the spy reference
+
     const result = authGuard.canActivate();
     
     expect(result).toBeFalse();

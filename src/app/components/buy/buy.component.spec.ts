@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientModule } from '@angular/common/http'; 
 import { BuyComponent } from './buy.component';
+import { BookService } from '../../book.service';
 
 describe('BuyComponent', () => {
   let component: BuyComponent;
@@ -8,7 +9,13 @@ describe('BuyComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BuyComponent]
+      imports: [
+        HttpClientModule, // Add HttpClientModule here
+        BuyComponent
+      ],
+      providers: [
+        BookService // Add BookService here if needed
+      ]
     })
     .compileComponents();
 

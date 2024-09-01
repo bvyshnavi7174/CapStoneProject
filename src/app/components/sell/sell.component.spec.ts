@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientModule } from '@angular/common/http'; // Import HttpClientModule if SellComponent uses HttpClient
 import { SellComponent } from './sell.component';
 
 describe('SellComponent', () => {
@@ -8,7 +8,10 @@ describe('SellComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SellComponent]
+      imports: [
+        HttpClientModule, // Include HttpClientModule if needed
+        SellComponent // Import the standalone SellComponent
+      ]
     })
     .compileComponents();
 

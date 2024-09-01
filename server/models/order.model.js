@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 
-// Define schema for an order
+
 const orderSchema = new mongoose.Schema({
     username: { type: String, required: true },
     useremail: { type: String, required: true },
-    orderDate: { type: Date, default: Date.now }, // Date when the order is placed
+    orderDate: { type: Date, default: Date.now }, 
     items: [
       {
         bookName: { type: String, required: true },
@@ -13,13 +13,13 @@ const orderSchema = new mongoose.Schema({
         quantity: { type: Number, required: true }
       }
     ],
-    totalAmount: { type: Number, required: true }, // Total amount of the order
-    status: { type: String, default: 'buy' }, // Status of the order, e.g., 'Pending', 'Shipped', 'Delivered'
+    totalAmount: { type: Number, required: true }, 
+    status: { type: String, default: 'buy' }, 
     cardDetails: {
       cardNumber: { type: String, required: true },
       expiryDate: { type: String, required: true },
       cvv: { type: String, required: true }
-    } // Add card details if needed
+    } 
 });
 
 module.exports = mongoose.model('Order', orderSchema);

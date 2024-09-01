@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Order = require('../models/order.model');
 
-// Add a new order
+
 router.post('/add', async (req, res) => {
     try {
       console.log('Received order data:', req.body); // Log the request body
@@ -61,7 +61,7 @@ router.post('/add', async (req, res) => {
   
 
 
-  // Get all orders
+
 router.get('/all', async (req, res) => {
   try {
     const orders = await Order.find();
