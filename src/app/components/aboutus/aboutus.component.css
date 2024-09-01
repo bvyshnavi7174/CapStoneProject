@@ -109,14 +109,7 @@
     font-size: 0.875rem;
     color: #000000;
   }
-  
-  .team-img {
-    width: 80px; 
-    height: 80px; 
-    border-radius: 50%;
-    object-fit: cover; 
-}
-
+ 
 
 .about-contact {
   margin-bottom: 20px;

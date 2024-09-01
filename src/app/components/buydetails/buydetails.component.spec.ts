@@ -25,8 +25,6 @@ describe('BuydetailsComponent', () => {
 
     fixture = TestBed.createComponent(BuydetailsComponent);
     component = fixture.componentInstance;
-    bookService = TestBed.inject(BookService);
-    orderService = TestBed.inject(OrderService);
     fixture.detectChanges();
   });
 

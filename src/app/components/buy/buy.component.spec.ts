@@ -3,14 +3,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { of } from 'rxjs';
 import { BuyComponent } from './buy.component';
-import { BookService } from '../../book.service';
 import { CheckoutService } from '../../checkout.service';
-import { Book } from '../../book.service';
+
 
 describe('BuyComponent', () => {
   let component: BuyComponent;
   let fixture: ComponentFixture<BuyComponent>;
-  let bookService: BookService;
   let checkoutService: CheckoutService;
   let router: Router;
 
@@ -21,7 +19,6 @@ describe('BuyComponent', () => {
         BuyComponent
       ],
       providers: [
-        BookService,
         CheckoutService,
         { provide: Router, useValue: { navigate: jasmine.createSpy('navigate') } }
       ]
@@ -30,7 +27,6 @@ describe('BuyComponent', () => {
 
     fixture = TestBed.createComponent(BuyComponent);
     component = fixture.componentInstance;
-    bookService = TestBed.inject(BookService);
     checkoutService = TestBed.inject(CheckoutService);
     router = TestBed.inject(Router);
     fixture.detectChanges();

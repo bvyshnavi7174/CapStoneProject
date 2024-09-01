@@ -3,7 +3,6 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { of, throwError } from 'rxjs';
 import { CheckoutComponent } from './checkout.component';
 import { CheckoutService } from '../../checkout.service';
 import { OrderService } from '../../order.service';
@@ -34,7 +33,6 @@ describe('CheckoutComponent', () => {
     fixture = TestBed.createComponent(CheckoutComponent);
     component = fixture.componentInstance;
     checkoutService = TestBed.inject(CheckoutService);
-    orderService = TestBed.inject(OrderService);
     fixture.detectChanges();
   });
 

@@ -83,15 +83,7 @@
     width: 60%;
   }
 
-  /* Media Query for devices with a maximum width of 768px */
-/* @media (min-width: 768px) {
-  .overlay {
-    top: 60%;
-    width: 90%;
-    height: 60%;
-    background-color: rgba(0, 0, 0, 0.7);
-  }
-} */
+ 
 
 @media (min-width: 601px) and (max-width: 767px) {
   .overlay {

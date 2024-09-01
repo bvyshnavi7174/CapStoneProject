@@ -23,8 +23,7 @@ h2 {
     flex-wrap: wrap;
     gap: 20px; /* Space between cards */
     justify-content: center; /* Centering cards horizontally */
-    margin: 0; /* Remove default margin */
-}
+   }
 
 /* Styling individual order cards */
 .order-card {
